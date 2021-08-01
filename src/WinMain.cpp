@@ -57,6 +57,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
     // NULL: not used in this application
     HWND hWnd = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, szWindowClass, szTitle, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 800, 600, NULL, NULL, hInstance, NULL);
 
+    HWND hwndButton = CreateWindow(L"BUTTON", L"OK", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON, 10, 10, 100, 100, hWnd, NULL, (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), NULL); 
+
     if(!hWnd) {
         
         MessageBox(NULL, _T("Call to CreateWindow failed!"), _T("Windows Desktop Guided Tour"), NULL);
@@ -100,7 +102,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
         // Here your application is laid out
         // For this introduction, we just print out "Hello, Windows desktop!"
         // in the top left corner.
-        TextOut(hdc, 5, 5, greeting, _tcslen(greeting));
+        TextOut(hdc, 0, 0, greeting, _tcslen(greeting));
         // End application-specific layout section.
 
         EndPaint(hWnd, &ps);
